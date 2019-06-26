@@ -2,13 +2,7 @@
   
   // Your web app's Firebase configuration
   var firebaseConfig = {
-    apiKey: "AIzaSyCjMgU57BQ0YxUyyfZSS-AvsEzTld0DQZg",
-    authDomain: "canon-4f6d8.firebaseapp.com",
-    databaseURL: "https://canon-4f6d8.firebaseio.com",
-    projectId: "canon-4f6d8",
-    storageBucket: "canon-4f6d8.appspot.com",
-    messagingSenderId: "308709021912",
-    appId: "1:308709021912:web:8cf6f77688d63e69"
+   Your configurations go here
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
