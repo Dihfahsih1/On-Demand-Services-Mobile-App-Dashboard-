@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        Router App Dashboard
+    </title>
+
+    <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script  src="https://www.gstatic.com/firebasejs/6.1.0/firebase-auth.js"></script>
+    <script  src="https://www.gstatic.com/firebasejs/6.1.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-database.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/mycss.css">
+    <style type="text/css">
+        /* Always set the map height explicitly to define the size of the div
+                       * element that contains the map. */
+        #map {
+            height: 300px;
+            width: 400px;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Style the sidenav links and the dropdown button */
+        .sidenav a, .dropdown-btn {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 16px;
+            color: #818181;
+            display: block;
+            border: none;
+            background:#761c19;
+            width:100%;
+            text-align: left;
+            cursor: pointer;
+            outline:lawngreen;
+        }
+        .dropdown-btn{
+            font-size: 16px;
+        }
+        /* On mouse-over */
+        .sidenav a:hover, .dropdown-btn:hover {
+            color: #f1f1f1;
+        }
+
+        /* Add an active class to the active dropdown button */
+        .active {
+            background-color: green;
+        }
+
+        /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+        .dropdown-container {
+            display: none;
+            background-color: #262626;
+        }
+
+        .nobull {
+            list-style-type: none;
+            margin-left:-23%;
+        }
+        .sidemenu {
+            height: 100%; /* Full-height: remove this if you want "auto" height */
+            width: 160px; /* Set the width of the sidebar */
+            position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+            z-index: 1; /* Stay on top */
+            top: 1px; /* Stay at the top */
+            left: 0;
+            background-color:white;
+            overflow-x: hidden; /* Disable horizontal scroll */
+            padding-top:20px;
+        }
+
+        /* The navigation menu links */
+        .sidemenu a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            color: #818181;
+            display: block;
+        }
+
+        /* When you mouse over the navigation links, change their color */
+        .sidemenu a:hover {
+            color: #f1f1f1;
+        }
+
+        /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+        @media screen and (max-height: 450px) {
+            .sidemenu {padding-top: 15px;}
+            .sidemenu a {font-size: 18px;}
+        }
+
+    </style>
+
+</head>
+<body>
+<div class="container-fluid">
+    <nav class="navbar navbar-inverse" style=" position: fixed;width:87.2%;margin-left:11%" >
+        <div class="navbar-header">
+            <a class="navbar-brand active" href="#">Router Dashboard</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="/profile" class="glyphicon-user nav-link">Profile</a></li>
+            <li><a href="/customers" class="nav-link">App Clients</a></li>
+            <li><a href="/customerTopUps" class="nav-link">Wallet TopUps</a></li>
+            <li><a href="#" class="nav-link">Set Fares</a></li>
+        </ul>
+        <form class="navbar-form navbar-right" action="/action_page.php">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </nav>
+        <div class="sidemenu">
+
+            <ul class="nobull">
+                <img src="images/logo.jpg" width="100%" height="15%" >
+                <h3>App Services</h3>
+                <li>
+                    <button class="dropdown-btn">Boda Boda</button>
+                    <div class="dropdown-container">
+                        <a href="/dashboard-home">Manage Agent</a>
+                        <a href="/bodasonline">Bodas Online</a>
+                        <a href="/bodasworking">Bodas Working</a>
+                        <a href="/incomingBodaRequests">Incoming Requests</a>
+                        <a href="/allBodaTrips">All Boda Trips</a>
+                    </div>
+                </li>
+                <li><button class="dropdown-btn">Taxi</button>
+                    <div class="dropdown-container">
+                        <a href="/taxi">Manage Agent</a>
+                        <a href="/driversonline">Drivers Online</a>
+                        <a href="/driversworking">Drivers Working</a>
+                        <a href="/incomingDriverRequests">Incoming Requests</a>
+                        <a href="/allDriverTrips">All Driver Trips</a>
+                    </div>
+                <li>
+                    <button class="dropdown-btn">Delivery</button>
+                    <div class="dropdown-container collapse">
+                        <a href="/delivery">Manage Agent</a>
+                        <a href="/deliveryagentsonline">Agents Online</a>
+                        <a href="/deliveryagentsworking">Agents Working</a>
+                        <a href="/incomingDeliveryRequests">Incoming Requests</a>
+                        <a href="/allDeliveryTrips">All Agents Trips</a>
+                    </div>
+                </li>
+                <li >
+                    <button class="dropdown-btn">Car Renting</button>
+                    <div class="dropdown-container">
+                        <a href="/carrental">Manage Agent</a>
+                        <a href="/carrentalAgentsonline">Agents Online</a>
+                        <a href="/carrentalAgentsworking">Agents Working</a>
+                        <a href="/incomingcarrentalRequests">Incoming Requests</a>
+                        <a href="/allcarrentalServiceHistory">All Agents Trips</a>
+                    </div></li>
+                <li>
+                    <button class="dropdown-btn">Cleaning</button>
+                    <div class="dropdown-container">
+                        <a href="/cleaning">Manage Agent</a>
+                        <a href="/cleaningAgentsonline">Agents Online</a>
+                        <a href="/cleaningAgentsworking">Agents Working</a>
+                        <a href="/incomingcleaningRequests">Incoming Requests</a>
+                        <a href="/allcleaningServiceHistory">All Agents Trips</a>
+                    </div></li>
+                <li class="item">
+                    <button class="dropdown-btn">Doctors</button>
+                    <div class="dropdown-container">
+                        <a href="/doctors">Manage Agent</a>
+                        <a href="/doctorsonline">Agents Online</a>
+                        <a href="/doctorsworking">Agents Working</a>
+                        <a href="/incomingdoctorRequests">Incoming Requests</a>
+                        <a href="/alldoctorsServiceHistory">All Agents Trips</a>
+                    </div></li>
+                <li>
+                    <button class="dropdown-btn">Electricians</button>
+                    <div class="dropdown-container">
+                        <a href="/electricians">Manage Agent</a>
+                        <a href="/electriciansonline">Agents Online</a>
+                        <a href="/electriciansworking">Agents Working</a>
+                        <a href="/incomingElectriciansRequests">Incoming Requests</a>
+                        <a href="/allelectricianServiceHistory">All Agents Trips</a>
+                    </div></li>
+                <li>
+                    <button class="dropdown-btn">Fumigation</button>
+                    <div class="dropdown-container">
+                        <a href="/fumigation">Manage Agent</a>
+                        <a href="/Agentsonline/<%= 'fumigation'%>/">Agents Online</a>
+                        <a href="/Agentsworking/<%= 'fumigation'%>/">Agents Working</a>
+                        <a href="/incomingRequests/<%= 'fumigation'%>/">Incoming Requests</a>
+                        <a href="/allAgentsServiceHistory/<%= 'fumigation'%>/">All Agents Trips</a>
+                    </div></li>
+                <li>
+                    <button class="dropdown-btn">Gas Refill</button>
+                    <div class="dropdown-container">
+                        <a href="/gasrefill">Manage Agent</a>
+                        <a href="/Agentsonline/<%= 'gasrefill'%>/">Agents Online</a>
+                        <a href="/Agentsworking/<%= 'gasrefill'%>/">Agents Working</a>
+                        <a href="/incomingRequests/<%= 'gasrefill'%>/">Incoming Requests</a>
+                        <a href="/allAgentsServiceHistory/<%= 'gasrefill'%>/">All Agents Trips</a>
+                    </div></li>
+                <li>
+                    <button class="dropdown-btn">Massage</button>
+                    <div class="dropdown-container">
+                        <a href="/massage">Manage Agent</a>
+                        <a href="/Agentsonline/<%= 'massage'%>/">Agents Online</a>
+                        <a href="/Agentsworking/<%= 'massage'%>/">Agents Working</a>
+                        <a href="/incomingRequests/<%= 'massage'%>/">Incoming Requests</a>
+                        <a href="/allAgentsServiceHistory/<%= 'massage'%>/">All Agents Trips</a>
+                    </div></li>
+                <li>
+                    <button class="dropdown-btn">Plumbing</button>
+                    <div class="dropdown-container">
+                        <a href="/plumbing">Manage Agent</a>
+                        <a href="/Agentsonline/<%= 'plumbing'%>/">Agents Online</a>
+                        <a href="/Agentsworking/<%= 'plumbing'%>/">Agents Working</a>
+                        <a href="/incomingRequests/<%= 'plumbing'%>/">Incoming Requests</a>
+                        <a href="/allAgentsServiceHistory/<%= 'plumbing'%>/">All Agents Trips</a>
+                    </div></li>
+                <li class="item">
+                    <button class="dropdown-btn">Salon</button>
+                    <div class="dropdown-container">
+                        <a href="/salon/">Manage Agent</a>
+                        <a href="/Agentsonline/<%= 'salon'%>/">Agents Online</a>
+                        <a href="/Agentsworking/<%= 'salon'%>/">Agents Working</a>
+                        <a href="/incomingRequests/<%= 'salon'%>/">Incoming Requests</a>
+                        <a href="/allAgentsServiceHistory/<%= 'salon'%>/">All Agents Trips</a>
+                    </div></li>
+                <li>
+                    <button class="dropdown-btn">Mechanics</button>
+                    <div class="dropdown-container">
+                        <a href="/mechanics">Manage Agent</a>
+                        <a href="/Agentsonline/<%= 'mechanic'%>/">Agents Online</a>
+                        <a href="/Agentsworking/<%= 'mechanic'%>/">Agents Working</a>
+                        <a href="/incomingRequests/<%= 'mechanic'%>/">Incoming Requests</a>
+                        <a href="/allAgentsServiceHistory/<%= 'mechanic'%>/">All Agents Trips</a>
+                    </div></li>
+                </ul>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        //* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+    </script>
+</div>
+</div>
+<script src="/js/firebase.js"></script>
+<script src="/js/database.js"></script>
+</body>
+</html>

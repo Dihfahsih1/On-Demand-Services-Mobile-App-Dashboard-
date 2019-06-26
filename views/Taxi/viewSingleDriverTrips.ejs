@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            My first express app
+        </title>
+        <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
+         <!-- Add Firebase products that you want to use -->
+         <script  src="https://www.gstatic.com/firebasejs/6.1.0/firebase-auth.js"></script>
+         <script  src="https://www.gstatic.com/firebasejs/6.1.0/firebase-firestore.js"></script>
+         <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-database.js"></script>
+         <script src="bootstrap.js"></script>
+
+         <link rel="stylesheet" href="/css/bootstrap.css">
+         <link rel="stylesheet" href="/css/mycss.css">
+
+
+
+         
+    </head>
+    <body>
+    <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                <a class="navbar-brand" href="#">Router Dashboard</a>
+                </div>
+                <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Page 1</a></li>
+                <li><a href="#">Page 2</a></li>
+                </ul>
+                <form class="navbar-form navbar-left" action="/action_page.php">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+                <form class="navbar-form navbar-left" action="/action_page.php">
+                    <div class="form-group">
+                            <img  id='google-pic' height="30" width="30"/>
+                    </div>
+                    <div class="form-group"> 
+                            USER:<p id='google-displayName'>name</p>
+                    </div>
+                    <div class="form-group">
+                           EMAIL: <p id='google-email'>email</p>
+                    </div>
+                 </form>
+            </div>
+            </nav>
+            
+                    <div class="row">
+                            <div class="col-md-2">
+                                    <div class="vertical-menu">
+                                            <a href="" class="active" >Home</a>
+                                            <a href="" class="nav-link">Customers</a>
+                                            <a href="" class="nav-link">Boda Boda</a>
+                                            <a href="" class="nav-link">Taxi</a>
+                                            <a href="" class="nav-link">Delivery</a>
+                                            <a href="" class="nav-link">Car Rental</a>
+                                            <a href="" class="nav-link">Cleaning</a>
+                                            <a href="" class="nav-link">Doctors</a>
+                                            <a href="" class="nav-link">Electricians</a>
+                                            <a href="" class="nav-link">Fumigation</a>
+                                            <a href="" class="nav-link">Gas Refill</a>
+                                            <a href="" class="nav-link">Massage</a>
+                                            <a href="" class="nav-link">Plumbing</a>
+                                            <a href="" class="nav-link">Salon</a>
+                                            <a href="" class="nav-link">Mechanics</a>
+                                     </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                    <% var keys=Object.keys(historyobjects)  %>
+
+                                            <table class="table table-hover" border="2">
+                                                    <thead class="thead-dark">
+                                                    <tr>
+                                                            <th scope="col">Total Trips: <%= size %></th> 
+                                                    </tr>
+                                                      <tr>
+                                                        <th scope="col">PickUp</th> 
+                                                        <th scope="col">Total Cost</th>
+                                                        <th scope="col">Destination</th>
+                                                        <th scope="col" >Distance</th>
+                                                        <th scope="col" >Time</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                 <% keys.forEach(function(agent){ %>
+                                                       <tr id=""  onmouseover="{ getTaxiRideCustomerandDriver('<%= historyobjects[agent].customer %>','<%= historyobjects[agent].driver %>') }">
+                                                        <td><%= historyobjects[agent].PickUp %></td>
+                                                        <td><%= historyobjects[agent].TotalCost %></td>
+                                                        <td><%= historyobjects[agent].destination %></td>
+                                                        <td><%= historyobjects[agent].distance %></td>
+                                                        <% var date = new Date(historyobjects[agent].timestamp*1000) %>
+                                                        <td><%= date %></td>
+                                                       </tr>
+                                                       <% })%> 
+
+                                                    </tbody>
+                                                  </table>
+
+                                            
+                             </div>
+                             <div class="col-md-4">
+                                 <h3>Driver & Customer Details</h3>
+                                 <h5 id='riderName'></h5>
+                                 <h5 id='riderPhone'></h5>
+                                 <h5 id='riderHelment'></h5>
+                                 <img id="riderImage" height="100" width="100"/>
+                                 <h5 id='customerPhone'></h5>
+
+
+                             </div>
+
+                    </div>
+
+        <script src="/js/firebase.js"></script>
+        <script src="/js/database.js"></script>
+
+
+    </body>
+</html>

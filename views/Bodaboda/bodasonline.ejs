@@ -1,0 +1,46 @@
+<% include ../menu.html %><div class="container-fluid" style="margin-left: 15%;margin-top: -40%">
+    <div class="page-header focus"><h4>Bodaboda Agents Currently Online</h4></div>
+                    <div class="row">
+                            <div class="col-md-5">
+                                    <% var keys=Object.keys(onlinebodas)  %>
+     
+                                            <table class="table" border="1">
+                                                    <thead class="thead-dark">
+                                                        <tr >
+                                                            <th scope="col">Total Online</th> 
+                                                            <th scope="col"><p><%= size %></p></th>
+                                                          </tr>
+                                                      <tr>
+                                                        <th scope="col">UserName</th> 
+                                                        <th scope="col">Phone</th>
+                                                        <th scope="col">Helment No.</th>
+                                                        <th scope="col" >View Location</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                             <% keys.forEach(function(agent){ %>
+                                                <tr onmouseover="{ viewBodaLocation('<%= agent %>') }">
+                                                        <td><%= onlinebodas[agent].riderName %></td>
+                                                        <td><%= onlinebodas[agent].riderPhone %></td>
+                                                        <td><%= onlinebodas[agent].riderHelmentNo %></td>
+                                                        <td><button class="btn btn-primary"onclick="{ viewBodaLocation('<%= agent %>') }"> View Location</button></td>
+                                                </tr>
+                                              <% })%> 
+
+                                                    </tbody>
+                                                  </table>
+                             </div>
+
+                             <div class="col-md-4">
+                                     <h3>Rider Location</h3>
+                                        <div id="map">
+                                        </div>
+                                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNtTpw_MrAdwrPlXGTlVVS5BjH5xZeh50&callback=initMap"
+                                        async defer></script>  
+
+                             </div>
+                    </div>
+
+            </div>
+        <script src="/js/firebase.js"></script>
+        <script src="/js/database.js"></script>

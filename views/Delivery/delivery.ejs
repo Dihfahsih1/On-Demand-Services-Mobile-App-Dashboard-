@@ -1,0 +1,47 @@
+<% include ../menu.html %>
+<div class="container-fluid" style="margin-left: 15%;margin-top: -40%">
+    <div class="page-header"><h1> Delivery Agents Management Panel</h1></div>
+        <div class="col-lg-12" style=" overflow: scroll">
+         <% var keys=Object.keys(deliveryagents)  %>
+         <table class="table table-hover" border="2">
+        <thead class="thead-dark">
+        <tr>
+            <th ><p>Total: <%= size %></p></th>
+        </tr>
+        <tr>
+            <th >UserName</th>
+            <th >Phone</th>
+            <th >Account Status</th>
+            <th >Wallet Balance</th>
+            <th >Profile Pic</th>
+            <th >Nationl ID</th>
+            <th >Working Certificate</th>
+            <th>Rating</th>
+            <th>Approve</th>
+            <th>Deactivate</th>
+            <th>Reject</th>
+            <th >Trips</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% keys.forEach(function(agent){ %>
+            <tr onmouseover="{ GetDeliveryRating('<%= agent %>') }">
+                <td><%= deliveryagents[agent].userName %></td>
+                <td><%= deliveryagents[agent].phone %></td>
+                <td><%= deliveryagents[agent].accountStatus %></td>
+                <td><%= deliveryagents[agent].walletBalance %> UGX</td>
+                <td><a target="_blank" href="<%= deliveryagents[agent].profilePic %>"><img height="30" width="30" src="<%= deliveryagents[agent].profilePic %>"/></a></td>
+                <td><a target="_blank" href="<%= deliveryagents[agent].NationalIDPic %>"><img height="30" width="30" src="<%= deliveryagents[agent].NationalIDPic %>"/></a></td>
+                <td><a target="_blank" href="<%= deliveryagents[agent].WorkingCertificate %>"><img height="30" width="30" src="<%= deliveryagents[agent].WorkingCertificate %>"/></a></td>
+                <td><h4 id=rating></h4></td>
+                <td><button style='margin-top:5px' class="btn btn-primary"onclick="{ approveRest('<%= agent %>') }" id='approveButton'>Approve</button></td>
+                <td> <button style='margin-top:5px' class="btn btn-primary"onclick="{ deactivateRest('<%= agent %>') }" id='deactivateButton'>Deactivate</button></td>
+                <td><button style='margin-top:5px' class="btn btn-primary"  onclick="{ rejectRest('<%= agent %>') }" id='rejectButton'>reject</button></td>
+                <td><a href="/viewSingleDeliveryTrips/<%= agent %>/"><button class="btn btn-primary"  id='singleTripsButton'>Trips</button>  </a></td>
+            </tr>
+        <% })%>
+        </tbody>
+       </table>
+     </div>
+    </div>
+</div>

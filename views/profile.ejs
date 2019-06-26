@@ -1,0 +1,16 @@
+<% include menu.html %>
+<div style="overflow-y:-moz-scrollbars-vertical;margin-left: 160px;padding:6px 8px 6px 16px;"><br><br>
+    <div class="col-lg-6 center-block">
+    <div class="page-header text-center"><h1>Admin Profile</h1></div>
+
+        <div class="well">
+            <h3><span class="fa fa-user"></span>Welcome <%= user.username%></h3>
+            <p>
+                <strong>id </strong> <%= user.id %><br>
+                <strong>username </strong> <%=user.username %><br>
+                <strong>Encrypted password </strong> <%=user.password %><br>
+            </p>
+        </div>
+        <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+    </div>
+</div>

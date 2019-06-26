@@ -1,0 +1,42 @@
+<% include ../menu.html %>
+<div class="container-fluid" style="margin-left: 15%;margin-top: -40%">
+<div class="page-header"><h1> Electrician Working</h1></div>
+    <div class="col-md-5">
+        <% var keys=Object.keys(workingelectricians)  %>
+        <table class="table" border="2">
+            <thead class="thead-dark">
+            <tr>
+                <th>Total Online</th>
+                <th><p><%= size %></p></th>
+            </tr>
+            <tr>
+                <th>UserName</th>
+                <th>Phone</th>
+                <th>View Trip</th>
+                <th>View Location</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% keys.forEach(function(agent){ %>
+                <tr onmouseover="{ viewElectricianServiceLocation('<%= agent %>') }">
+                    <td><%= workingelectricians[agent].agentName %></td>
+                    <td><%= workingelectricians[agent].agentPhone %></td>
+                    <td><button class="btn btn-primary"onclick="{ viewElectricianService('<%= agent %>') }">Service Details</button></td>
+                    <td><button class="btn btn-primary"onclick="{ viewElectricianServiceLocation('<%= agent %>') }">Service Location</button></td>
+                </tr>
+            <% })%>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-5" >
+        <h3>Service Details</h3>
+        <h5 id="destination"></h5>
+        <h5 id="customer"></h5>
+        <h3>Service Location</h3>
+        <div id="map">
+        </div>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNtTpw_MrAdwrPlXGTlVVS5BjH5xZeh50&callback=initMap"
+                async defer></script>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+{
+  "name": "routerdashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.4",
+    "ejs": "^2.6.1",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "firebase": "^6.1.0",
+    "firebase-admin": "^8.0.0",
+    "jquery": "^3.4.1",
+    "morgan": "^1.9.1",
+    "mysql": "^2.17.1",
+    "node-static": "^0.7.11",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "rating": "^0.1.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "save": "^2.4.0",
+    "session": "^0.1.0",
+    "socket.io": "^2.2.0",
+    "xmlhttprequest": "^1.8.0"
+  }
+}

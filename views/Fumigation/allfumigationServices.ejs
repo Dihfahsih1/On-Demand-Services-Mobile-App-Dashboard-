@@ -1,0 +1,41 @@
+<% include ../menu.html %>
+<div class="container-fluid" style="margin-left: 15%;margin-top: -40%">
+            <div class="page-header"><h1> Fumigation Services History</h1></div>
+    <div class="col-md-6">
+        <% var keys=Object.keys(services)  %>
+        <table class="table table-hover" border="2">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Total</th>
+                <th scope="col"><p><%= size %></p></th>
+            </tr>
+            <tr>
+                <th scope="col">Service Charge</th>
+                <th scope="col">Service point</th>
+                <th scope="col">Rating</th>
+                <th scope="col" >Time</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% keys.forEach(function(agent){ %>
+                <tr onmouseover="{ getFumigationCustomerandAgent('<%= services[agent].customer %>','<%= services[agent].FumigationAgent %>') }">
+                    <td><%= services[agent].serviceFee %></td>
+                    <td><%= services[agent].servicepoint %></td>
+                    <td><%= services[agent].rating %></td>
+                    <% var date = new Date(services[agent].timestamp*1000) %>
+                    <td><%= date %></td>
+                </tr>
+            <% })%>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <h3>Agent & Customer Details</h3>
+        <h5 id='riderName'></h5>
+        <h5 id='riderPhone'></h5>
+        <img id="riderImage" height="100" width="100"/>
+        <h5 id='customerPhone'></h5>
+    </div>
+</div>
+<script src="/js/firebase.js"></script>
+<script src="/js/database.js"></script>

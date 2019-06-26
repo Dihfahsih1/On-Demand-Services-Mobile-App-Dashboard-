@@ -1,0 +1,33 @@
+<% include ../menu.html %>
+<div class="container-fluid" style="margin-left: 15%;margin-top: -40%">
+<div class="page-header"><h1> Fumigation Incoming Clients Requests</h1></div>
+    <div class="col-md-5">
+        <% var keys=Object.keys(requests)  %>
+        <table class="table" border="2">
+            <thead class="thead-dark">
+            <tr >
+                <th scope="col">Total Requests: <%= size %></th>
+            </tr>
+            <tr>
+                <th scope="col">Client Contact</th>
+                <th scope="col">View Request Location</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% keys.forEach(function(agent){ %>
+                <tr onmouseover="{ viewClientLocation('<%= agent %>','fumigationcustomerRequest') }">
+                    <td><%= requests[agent].customerPhone %></td>
+                    <td><button class="btn btn-primary"onclick="{ viewClientLocation('<%= agent %>','fumigationcustomerRequest') }">View Request Location</button></td>
+                </tr>
+            <% })%>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <h3>Request Location</h3>
+        <div id="map">
+        </div>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNtTpw_MrAdwrPlXGTlVVS5BjH5xZeh50&callback=initMap"
+                async defer></script>
+    </div>
+</div>

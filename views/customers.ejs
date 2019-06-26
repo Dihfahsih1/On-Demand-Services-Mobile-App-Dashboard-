@@ -1,0 +1,30 @@
+<% include menu.html %>
+<div style="overflow-y:-moz-scrollbars-vertical;margin-left: 160px;padding:6px 8px 6px 16px;"><br><br>
+    <h3 class="text-center">Router App Clients'</h3>
+        <% var keys=Object.keys(customers)  %>
+        <table class="table table-hover" border="2">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Total Customers: <%= size %></th>
+                  </tr>
+                  <tr>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Wallet Balance</th>
+                    <th scope="col">Service History</th>
+                    <th scope="col">Promotions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 <% keys.forEach(function(agent){ %>
+                  <tr>
+                    <td><%= customers[agent].phone %></td>
+                    <td><%= customers[agent].walletBalance %> UGX</td>
+                    <td><button class="btn btn-primary"id='approveButton'>View Service history</button></td>
+                    <td><button class="btn btn-primary"id='approveButton'>View Promotions attached</button></td>
+                  </tr>
+                 <% })%>
+               </tbody>
+      </table>
+     </div>
+</div>
+
